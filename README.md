@@ -73,8 +73,8 @@ learnx/
 ### 1️⃣ Clone Repository
 
 ```
-git clone https://github.com/your-username/learnx.git
-cd learnx
+git clone https://github.com/revanth19021/elearning
+cd elearning
 ```
 
 ### 2️⃣ Create Virtual Environment
