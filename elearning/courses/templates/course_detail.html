@@ -11,12 +11,13 @@ body {
     color: white;
 }
 
-/* Navbar */
+/* 🔷 Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     padding: 15px 40px;
     background: #020617;
+    align-items: center;
 }
 
 .nav-links a {
@@ -25,48 +26,102 @@ body {
     text-decoration: none;
 }
 
-/* Container */
+/* 🔷 Button */
+.btn {
+    padding: 8px 15px;
+    background: #38bdf8;
+    color: black;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+/* 🔷 Container */
 .container {
     padding: 40px;
 }
 
-/* Video List */
+/* 🔷 Course Info */
+.course-box {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+/* 🔷 Video Cards */
 .video {
     background: rgba(255,255,255,0.05);
     padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
+    margin: 15px 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .video a {
     color: #38bdf8;
     text-decoration: none;
 }
+
+/* 🔷 Message */
+.message {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255,0,0,0.1);
+    border-radius: 8px;
+}
 </style>
 </head>
 
 <body>
 
+<!-- 🔷 Navbar -->
 <div class="navbar">
     <div>🎓 LearnX</div>
+
     <div class="nav-links">
         <a href="{% url 'course_list' %}">Home</a>
+
+        {% if not is_enrolled %}
+            <a href="{% url 'enroll' course.id %}" class="btn">Enroll</a>
+        {% else %}
+            <span style="color: #22c55e;">Enrolled ✓</span>
+        {% endif %}
+
         <a href="{% url 'logout' %}">Logout</a>
     </div>
 </div>
 
+<!-- 🔷 Content -->
 <div class="container">
-    <h2>{{ course.title }}</h2>
-    <p>{{ course.description }}</p>
 
-    <h3>Course Videos</h3>
+    <!-- Course Info -->
+    <div class="course-box">
+        <h2>{{ course.title }}</h2>
+        <p>{{ course.description }}</p>
+    </div>
 
-    {% for video in videos %}
-        <div class="video">
-            <p>{{ video.title }}</p>
-            <a href="{{ video.video_url }}" target="_blank">▶ Watch</a>
+    <!-- 🔐 Enrollment Check -->
+    {% if is_enrolled %}
+
+        <h3>📚 Course Videos</h3>
+
+        {% for video in videos %}
+            <div class="video">
+                <span>{{ video.title }}</span>
+                <a href="{{ video.video_url }}" target="_blank">▶ Watch</a>
+            </div>
+        {% endfor %}
+
+    {% else %}
+
+        <div class="message">
+            <p>🔒 You must enroll to view this course content.</p>
         </div>
-    {% endfor %}
+
+    {% endif %}
+
 </div>
 
 </body>

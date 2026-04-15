@@ -12,11 +12,23 @@ def course_list(request):
     return render(request, 'course_list.html', {'courses': courses})
 
 
+from learning.models import Enrollment
+
 def course_detail(request, course_id):
-    course = get_object_or_404(Course, id=course_id)
-    videos = Video.objects.filter(course=course)
+    course = Course.objects.get(id=course_id)
+
+    is_enrolled = Enrollment.objects.filter(
+        user=request.user,
+        course=course
+    ).exists()
+
+    videos = None
+
+    if is_enrolled:
+        videos = course.video_set.all()
 
     return render(request, 'course_detail.html', {
         'course': course,
-        'videos': videos
+        'videos': videos,
+        'is_enrolled': is_enrolled
     })
