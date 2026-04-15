@@ -120,98 +120,23 @@ body {
     <h2>Welcome, {{ request.user.username }} 👋</h2>
     <p>Explore courses and start learning today</p>
 </div>
-
 <div class="cards">
 
+{% for course in courses %}
     <div class="card">
-        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4" alt="Python Pro">
-        <div class="card-content">
-            <h3>Python Programming</h3>
-            <p>Learn Python from basics to advanced.</p>
-           <a href="{% url 'course_detail' 1 %}">Start</a>
-        </div>
-    </div>
 
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6" alt="HTML CSS">
-        <div class="card-content">
-            <h3>HTML & CSS</h3>
-            <p>Build modern responsive websites.</p>
-           <a href="{% url 'course_detail' 2 %}">Start</a>
-        </div>
-    </div>
+        {% if course.image %}
+            <img src="{{ course.image }}" alt="{{ course.title }}">
+        {% endif %}
 
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c" alt="JavaScript">
         <div class="card-content">
-            <h3>JavaScript</h3>
-            <p>Master JS for dynamic apps.</p>
-           <a href="{% url 'course_detail' 3 %}">Start</a>
-        </div>
-    </div>
+            <h3>{{ course.title }}</h3>
+            <p>{{ course.description }}</p>
 
-    <div class="card">
-       <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee" alt="React">
-        <div class="card-content">
-            <h3>React JS</h3>
-            <p>Create modern UI apps.</p>
-           <a href="{% url 'course_detail' 4 %}">Start</a>
+            <a href="{% url 'course_detail' course.id %}">Start</a>
         </div>
     </div>
-
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1581091215367-59ab6b1d4d4d" alt="NodeJS">
-        <div class="card-content">
-            <h3>Node.js</h3>
-            <p>Backend development.</p>
-           <a href="{% url 'course_detail' 5 %}">Start</a>
-        </div>
-    </div>
-
-    <div class="card">
-<img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d" alt="Database">
-        <div class="card-content">
-            <h3>Database</h3>
-            <p>SQL & DB design.</p>
-           <a href="{% url 'course_detail' 6 %}">Start</a>
-        </div>
-    </div>
-
-    <div class="card">
-   <img src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb" alt="Android">
-        <div class="card-content">
-            <h3>Android Dev</h3>
-            <p>Build mobile apps.</p>
-           <a href="{% url 'course_detail' 7 %}">Start</a>
-        </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b" alt="Cyber Security">
-        <div class="card-content">
-            <h3>Cyber Security</h3>
-            <p>Protect systems.</p>
-           <a href="{% url 'course_detail' 8 %}">Start</a>
-        </div>
-    </div>
-
-    <div class="card">
-   <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71" alt="Data Science">
-        <div class="card-content">
-            <h3>Data Science</h3>
-            <p>AI & ML basics.</p>
-           <a href="{% url 'course_detail' 9 %}">Start</a>
-        </div>
-    </div>
-
-    <div class="card">
-       <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa" alt="Cloud Computing">
-        <div class="card-content">
-            <h3>Cloud Computing</h3>
-            <p>AWS & DevOps.</p>
-           <a href="{% url 'course_detail' 10 %}">Start</a>
-        </div>
-    </div>
+{% endfor %}
 
 </div>
 
