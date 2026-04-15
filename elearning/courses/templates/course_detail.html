@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Course Detail</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: #0f172a;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background: #020617;
+}
+
+.nav-links a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+/* Container */
+.container {
+    padding: 40px;
+}
+
+/* Video List */
+.video {
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.video a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <div>🎓 LearnX</div>
+    <div class="nav-links">
+        <a href="{% url 'course_list' %}">Home</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+    <h2>{{ course.title }}</h2>
+    <p>{{ course.description }}</p>
+
+    <h3>Course Videos</h3>
+
+    {% for video in videos %}
+        <div class="video">
+            <p>{{ video.title }}</p>
+            <a href="{{ video.video_url }}" target="_blank">▶ Watch</a>
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

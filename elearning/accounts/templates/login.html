@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<style>
+/* 🔷 Animated Background */
+body {
+    font-family: Arial;
+    margin: 0;
+    height: 100vh;
+
+    background: linear-gradient(-45deg, #0f172a, #1e293b, #020617, #1e3a8a);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+
+.register-btn {
+    display: block;
+    margin-top: 15px;
+    padding: 10px;
+    background: #22c55e;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.register-btn:hover {
+    background: #16a34a;
+    transform: scale(1.03);
+}
+
+/* 🔷 Background Animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 🔷 Navbar */
+.navbar {
+    background: linear-gradient(90deg, #2c3e50, #4ca1af);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    position: relative;
+}
+
+/* underline animation */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #ffd700;
+    left: 0;
+    bottom: -4px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* 🔷 Glass Container */
+.container {
+    width: 350px;
+    margin: 80px auto;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+
+    animation: fadeIn 1s ease;
+}
+
+/* 🔷 Inputs */
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* focus glow */
+input:focus {
+    box-shadow: 0 0 8px #38bdf8;
+}
+
+/* 🔷 Button */
+button {
+    width: 95%;
+    padding: 10px;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* hover animation */
+button:hover {
+    transform: scale(1.05);
+}
+
+/* 🔷 Fade Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔷 Navbar -->
+<div class="navbar">
+    <div class="logo">🎓 E-Learn</div>
+
+    <div class="nav-links">
+        <a href="{% url 'home' %}">Home</a>
+
+        {% if request.user.is_authenticated %}
+            <a href="#">Courses</a>
+            <a href="#">My Learning</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container">
+    <h2>Login</h2>
+
+    <form method="post">
+    {% csrf_token %}
+    
+    <input type="text" name="username" placeholder="Username"><br>
+    <input type="password" name="password" placeholder="Password"><br>
+    
+    <button type="submit">Login</button>
+</form>
+
+<!-- 🔥 Register Button -->
+<a href="{% url 'register' %}" class="register-btn">
+    New User? Sign Up
+</a>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

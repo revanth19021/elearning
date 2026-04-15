@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LearnX</title>
+
+<style>
+/* 🔷 Base */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #020617, #0f172a);
+    color: white;
+}
+
+/* 🔷 Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(2,6,23,0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.nav-links a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #cbd5f5;
+    position: relative;
+}
+
+/* underline animation */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #38bdf8;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* 🔷 Hero */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    animation: fadeIn 1.5s ease;
+}
+
+.hero h1 {
+    font-size: 50px;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: #94a3b8;
+    font-size: 18px;
+}
+
+/* 🔷 Button animation */
+.btn {
+    margin-top: 20px;
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    color: black;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* 🔷 Section */
+.section {
+    padding: 60px;
+}
+
+/* 🔷 Cards */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* 🔷 Glass Card */
+.card {
+    width: 270px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: 0.4s;
+    animation: slideUp 0.8s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.03);
+}
+
+/* Image zoom */
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    transition: 0.4s;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card h3 {
+    margin: 10px 0;
+}
+
+.card p {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    background: #38bdf8;
+    color: black;
+    text-decoration: none;
+}
+
+/* 🔷 Animations */
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(-20px);}
+    to {opacity:1; transform: translateY(0);}
+}
+
+@keyframes slideUp {
+    from {opacity:0; transform: translateY(40px);}
+    to {opacity:1; transform: translateY(0);}
+}
+/* 🔷 Features Section (Different Background) */
+.features-section {
+    padding: 80px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #111827, #1e293b);
+}
+
+.features-section h2 {
+    font-size: 32px;
+}
+
+.subtitle {
+    color: #94a3b8;
+    margin-top: 10px;
+}
+
+/* Grid layout */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+/* Feature card */
+.feature {
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    background: rgba(56,189,248,0.1);
+}
+/* 🔷 Tablets (max-width: 992px) */
+@media (max-width: 992px) {
+
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .section {
+        padding: 40px 20px;
+    }
+
+    .cards {
+        gap: 20px;
+    }
+
+    .card {
+        width: 220px;
+    }
+}
+
+
+/* 🔷 Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+
+    /* Navbar stack */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        margin-top: 10px;
+    }
+
+    .nav-links a {
+        display: inline-block;
+        margin: 10px 10px 0 0;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 60px 15px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    /* Cards → single column */
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    /* Features grid */
+    .features {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* 🔷 Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .card img {
+        height: 140px;
+    }
+
+    .feature {
+        padding: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔷 Navbar -->
+<div class="navbar">
+    <div class="logo">🚀 LearnX</div>
+
+    <div class="nav-links">
+        <a href="{% url 'home' %}">Home</a>
+
+        {% if request.user.is_authenticated %}
+            <a href="#">Courses</a>
+            <a href="#">My Learning</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- 🔷 Hero -->
+<div class="hero">
+    <h1>Master Skills for the Future 🚀</h1>
+    <p>Interactive courses, real-world projects, and career-ready skills</p>
+    <a href="#" class="btn">Explore Courses</a>
+</div>
+
+<!-- 🔷 Why Choose Us Section -->
+<div class="features-section">
+    <h2>Why Learn With LearnX?</h2>
+    <p class="subtitle">
+        A modern platform designed to help you grow faster with real-world skills
+    </p>
+
+    <div class="features">
+
+        <div class="feature">
+            <h3>🚀 Career-Focused Learning</h3>
+            <p>Courses designed with industry standards and real-world projects.</p>
+        </div>
+
+        <div class="feature">
+            <h3>🎥 Interactive Video Lessons</h3>
+            <p>Learn through engaging, high-quality video content.</p>
+        </div>
+
+        <div class="feature">
+            <h3>📊 Track Your Progress</h3>
+            <p>Stay motivated with progress tracking and completion stats.</p>
+        </div>
+
+        <div class="feature">
+            <h3>🌍 Learn Anytime, Anywhere</h3>
+            <p>Access courses from any device at your convenience.</p>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- 🔷 Courses -->
+<div class="section">
+    <h2 style="text-align:center;">Popular Courses</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="https://source.unsplash.com/300x200/?coding">
+            <div class="card-content">
+                <h3>Python Development</h3>
+                <p>From basics to advanced backend development</p>
+                <a href="#">Start</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://source.unsplash.com/300x200/?react">
+            <div class="card-content">
+                <h3>React JS</h3>
+                <p>Build modern UI with React and hooks</p>
+                <a href="#">Start</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://source.unsplash.com/300x200/?ai">
+            <div class="card-content">
+                <h3>AI & ML</h3>
+                <p>Learn machine learning & AI concepts</p>
+                <a href="#">Start</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://source.unsplash.com/300x200/?cloud">
+            <div class="card-content">
+                <h3>Cloud Computing</h3>
+                <p>AWS, DevOps & deployment mastery</p>
+                <a href="#">Start</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f4f6f9;
+    margin: 0;
+}
+
+.navbar {
+    background: linear-gradient(90deg, #2c3e50, #4ca1af);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #ffd700;
+}
+
+.container {
+    width: 350px;
+    margin: 80px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    width: 95%;
+    padding: 10px;
+    background: green;
+    color: white;
+    border: none;
+}
+.login-btn {
+    display: block;
+    margin-top: 15px;
+    padding: 10px;
+    background: #3b82f6;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #2563eb;
+    transform: scale(1.03);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔷 Navbar -->
+<div class="navbar">
+    <div class="logo">🎓 E-Learn</div>
+
+    <div class="nav-links">
+        <a href="{% url 'home' %}">Home</a>
+
+        {% if request.user.is_authenticated %}
+            <a href="#">Courses</a>
+            <a href="#">My Learning</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container">
+    <h2>Register</h2>
+
+    <form method="post">
+    {% csrf_token %}
+    
+    <input type="text" name="username" placeholder="Username"><br>
+    <input type="password" name="password" placeholder="Password"><br>
+    
+    <button type="submit">Register</button>
+</form>
+
+<!-- 🔥 Login for existing users -->
+<a href="{% url 'login' %}" class="login-btn">
+    Already have an account? Login
+</a>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
